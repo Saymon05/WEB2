@@ -21,21 +21,27 @@ class ControleVeiculo
         $modelo = filter_input(INPUT_POST, "input_modelo", FILTER_SANITIZE_STRING);
         $v = new ModeloVeiculo($fabricante, $modelo);
         $dao = new DaoVeiculo();
+        $visao = new VisaoVeiculo();
+        $mensagem = '';
         if ($dao->insert($v)) {
             return '{"mensagem": "Inclusão realizada!"}';
         } else {
             return '{"mensagem": "Erro ao realizar a inclusão!"}';
         }
+        $visao->mostrarMensagem('Veiculos', 'Cadastro', $mensagem);
     }
     public function exclui()
     {
         $id = filter_input(INPUT_POST, "input_id", FILTER_SANITIZE_NUMBER_INT);
         $dao = new DaoVeiculo();
+        $visao = new VisaoVeiculo();
+        $mensagem = '';
         if ($dao->delete($id)) {
             return '{"mensagem": "Deleção realizada!"}';
         } else {
             return '{"mensagem": "Erro ao realizar a deleção!"}';
         }
+        $visao->mostrarMensagem('Veiculos', 'Exclusão', $mensagem);
     }
     public function altera()
     {

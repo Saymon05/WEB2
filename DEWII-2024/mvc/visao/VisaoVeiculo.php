@@ -12,6 +12,12 @@ final class VisaoVeiculo
             $dadosPraTabela .= '<td>' . $linha['id'] . '</td>';
             $dadosPraTabela .= '<td>' . $linha['fabricante'] . '</td>';
             $dadosPraTabela .= '<td>' . $linha['modelo'] . '</td>';
+            $dadosPraTabela .= '<td>';
+
+            $dadosPraTabela .= '<form action="/index.php?mod=veiculo&acao=exclui" method="post">';
+            $dadosPraTabela .= '<input type="hidden" name="input_id" value="' . $linha['id'] .'">';
+            $dadosPraTabela .= '<button>EXC</button>';
+            $dadosPraTabela .= '<form>';
 
             $dadosPraTabela .= '</tr>';
         }
@@ -34,6 +40,9 @@ final class VisaoVeiculo
     }
 
     function mostrarMensagem($tit, $sub, $msg){
-
+        $titulo = $tit;
+        $subtitulo = $sub;
+        $conteudo = $msg;
+        require_once __DIR__ . '/templates.main.php';
     }
 }

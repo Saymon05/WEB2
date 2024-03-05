@@ -9,6 +9,7 @@
     
     <header>
         <h1><?= $titulo; ?></h1>
+        <a href="/index.php?mod=veiculo&acao=lista">Listar</a>
         <a href="/index.php?mod=veiculo&acao=digitarnovo">Novo</a>
         <hr>
     </header>
@@ -24,7 +25,7 @@
 
     <footer>
         <hr>
-        footerrrrrrrrrrrrr
+        Rodapé
     </footer>
 
 </body>
