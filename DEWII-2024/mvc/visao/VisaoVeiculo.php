@@ -17,7 +17,15 @@ final class VisaoVeiculo
             $dadosPraTabela .= '<form action="/index.php?mod=veiculo&acao=exclui" method="post">';
             $dadosPraTabela .= '<input type="hidden" name="input_id" value="' . $linha['id'] .'">';
             $dadosPraTabela .= '<button>EXC</button>';
-            $dadosPraTabela .= '<form>';
+            $dadosPraTabela .= '</form>';
+            $dadosPraTabela .= '</td>';
+
+            $dadosPraTabela .= '<td>';
+            $dadosPraTabela .= '<form action="/index.php?mod=veiculo&acao=digitarEdicao" method="post">';
+            $dadosPraTabela .= '<input type="hidden" name="input_id" value="' . $linha['id'] .'">';
+            $dadosPraTabela .= '<button>EDIT</button>';
+            $dadosPraTabela .= '</form>';
+            $dadosPraTabela .= '</td>';
 
             $dadosPraTabela .= '</tr>';
         }
@@ -39,10 +47,28 @@ final class VisaoVeiculo
         require_once __DIR__ . '/templates/main.php';
     }
 
+    function mostrarFormEdicao($dados){
+        $titulo = 'Veiculo';
+        $subtitulo = 'Edicao';
+        $form = file_get_contents(__DIR__ . '/templates/fragmentos/form.html');
+        $form = str_replace(
+            ['{{act}}', '{{id}}', '{{fab}}', '{{mod}}'],
+            [
+                '/index.php?mod=veiculo&acao=altera',
+                $dados['id'],
+                $dados['fabricante'],
+                $dados['modelo']
+            ],
+            $form
+        );
+        $conteudo = $form;
+        require_once __DIR__ . '/templates/main.php';
+    }
+
     function mostrarMensagem($tit, $sub, $msg){
         $titulo = $tit;
         $subtitulo = $sub;
         $conteudo = $msg;
-        require_once __DIR__ . '/templates.main.php';
+        require_once __DIR__ . '/templates/main.php';
     }
 }

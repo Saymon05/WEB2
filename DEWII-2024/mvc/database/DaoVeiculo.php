@@ -1,6 +1,6 @@
 <?php
 
-class DaoVeiculo
+    class DaoVeiculo
 {
     public function select(){
         $sql = "select * from veiculos;";
@@ -10,6 +10,18 @@ class DaoVeiculo
         }
         $pst->execute();
         $result = $pst->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function selectById($id){
+        $sql = "select * from veiculos where id = ?;";
+        $pst = Conexao::getPrepareStatement($sql);
+        if (!$pst) {
+            exit("Erro ao preparar");
+        }
+        $pst->bindValue(1, $id);
+        $pst->execute();
+        $result = $pst->fetchAll(PDO::FETCH_ASSOC)[0];
         return $result;
     }
 
