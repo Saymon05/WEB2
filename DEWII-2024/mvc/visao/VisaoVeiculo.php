@@ -14,14 +14,14 @@ final class VisaoVeiculo
             $dadosPraTabela .= '<td>' . $linha['modelo'] . '</td>';
             $dadosPraTabela .= '<td>';
 
-            $dadosPraTabela .= '<form action="/index.php?mod=veiculo&acao=exclui" method="post">';
+            $dadosPraTabela .= '<form action="/veiculo/exclui" method="post">';
             $dadosPraTabela .= '<input type="hidden" name="input_id" value="' . $linha['id'] .'">';
             $dadosPraTabela .= '<button>EXC</button>';
             $dadosPraTabela .= '</form>';
             $dadosPraTabela .= '</td>';
 
             $dadosPraTabela .= '<td>';
-            $dadosPraTabela .= '<form action="/index.php?mod=veiculo&acao=digitarEdicao" method="post">';
+            $dadosPraTabela .= '<form action="/veiculo/digitarEdicao" method="post">';
             $dadosPraTabela .= '<input type="hidden" name="input_id" value="' . $linha['id'] .'">';
             $dadosPraTabela .= '<button>EDIT</button>';
             $dadosPraTabela .= '</form>';
@@ -40,7 +40,7 @@ final class VisaoVeiculo
         $form = file_get_contents(__DIR__ . '/templates/fragmentos/form.html');
         $form = str_replace(
             ['{{act}}', '{{id}}', '{{fab}}', '{{mod}}'],
-            ['/index.php?mod=veiculo&acao=novo'],
+            ['/veiculo/novo'],
             $form
         );
         $conteudo = $form;
@@ -54,7 +54,7 @@ final class VisaoVeiculo
         $form = str_replace(
             ['{{act}}', '{{id}}', '{{fab}}', '{{mod}}'],
             [
-                '/index.php?mod=veiculo&acao=altera',
+                '/veiculo/altera',
                 $dados['id'],
                 $dados['fabricante'],
                 $dados['modelo']
